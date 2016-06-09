@@ -80,6 +80,7 @@ set(CODEBOOKSVQANSSI
 
 set(CODEBOOKSGE ${D}/gecb.txt)
 
+if(FALSE)
 # when crosscompiling import the executable targets from a file
 if(CMAKE_CROSSCOMPILING)
     set(IMPORT_EXECUTABLES "IMPORTFILE-NOTFOUND" CACHE FILEPATH "Point to the export file from a native build")
@@ -153,6 +154,7 @@ add_custom_command(
     COMMAND generate_codebook ge_cb ${CODEBOOKSGE} > ${CMAKE_CURRENT_BINARY_DIR}/codebookge.c
     DEPENDS generate_codebook ${CODEBOOKSGE}
 )
+endif()
 
 #
 # codec2 library sources
@@ -203,6 +205,7 @@ set_target_properties(codec2 PROPERTIES
     PUBLIC_HEADER "${CODEC2_PUBLIC_HEADERS}"
 )
 
+if(FALSE)
 add_executable(c2demo c2demo.c)
 target_link_libraries(c2demo ${CMAKE_REQUIRED_LIBRARIES} codec2)
 
@@ -238,6 +241,7 @@ target_link_libraries(fec_enc ${CMAKE_REQUIRED_LIBRARIES} codec2)
 
 add_executable(fec_dec fec_dec.c golay23.c)
 target_link_libraries(fec_dec ${CMAKE_REQUIRED_LIBRARIES} codec2)
+endif()
 
 install(TARGETS codec2 EXPORT codec2-config
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
@@ -250,6 +254,7 @@ install(TARGETS codec2 EXPORT codec2-config
 #    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/codec2
 #)
 
+if(FALSE)
 install(TARGETS
     c2demo
     c2demo
@@ -265,3 +270,4 @@ install(TARGETS
     fec_dec
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
+endif()
